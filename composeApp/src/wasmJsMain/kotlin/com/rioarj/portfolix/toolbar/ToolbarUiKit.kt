@@ -22,7 +22,10 @@ import com.rioarj.portfolix.style.orangeColor
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun ToolbarUiKit(modifier: Modifier = Modifier) {
+internal fun ToolbarUiKit(
+    modifier: Modifier = Modifier,
+    onScrollToPage: (Int) -> Unit,
+) {
     TopAppBar(
         modifier = modifier.height(160.dp),
         colors = TopAppBarColors(
@@ -50,7 +53,7 @@ internal fun ToolbarUiKit(modifier: Modifier = Modifier) {
                     color = Color.White,
                 )
 
-                NavigationHeaderUI()
+                NavigationHeaderUI(onSelectedIndex = onScrollToPage)
             }
         },
     )

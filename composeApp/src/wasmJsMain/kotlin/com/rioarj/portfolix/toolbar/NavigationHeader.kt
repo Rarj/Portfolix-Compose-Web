@@ -15,7 +15,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-internal fun NavigationHeaderUI(modifier: Modifier = Modifier) {
+internal fun NavigationHeaderUI(
+    modifier: Modifier = Modifier,
+    onSelectedIndex: (Int) -> Unit,
+) {
     val menuInstance = remember { NavigationState() }
     val menus = remember { menuInstance.getNavigationMenus() }
 
@@ -26,7 +29,14 @@ internal fun NavigationHeaderUI(modifier: Modifier = Modifier) {
     ) {
         menus.value.forEach { menu ->
             TextButton(
-                onClick = { menuInstance.setSelectedMenu(menu.key) },
+                onClick = {
+                    menuInstance.setSelectedMenu(menu.key)
+                    menus.value.values.mapIndexed { index, selectedMenu ->
+                        if (menu.value.name.equals(selectedMenu.name, ignoreCase = true)) {
+                            onSelectedIndex.invoke(index)
+                        }
+                    }
+                },
                 content = {
                     Text(
                         text = menu.value.name,
