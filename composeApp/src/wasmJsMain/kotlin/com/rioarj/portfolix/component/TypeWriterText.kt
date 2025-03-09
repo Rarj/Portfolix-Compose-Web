@@ -33,8 +33,8 @@ internal fun TypewriterText(texts: List<String>) {
 
     Text(
         text = textToDisplay,
-        fontSize = 20.sp,
-        fontWeight = FontWeight.Bold,
+        fontSize = 30.sp,
+        fontWeight = FontWeight.Medium,
         color = orangeColor,
     )
 }
