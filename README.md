@@ -5,11 +5,7 @@ This is a Kotlin Multiplatform project targeting iOS, Web.
   - `commonMain` is for code that’s common for all targets.
   - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
     For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    `iosMain` would be the right folder for such calls.
-
-* `/iosApp` contains iOS applications. Even if you’re sharing your UI with Compose Multiplatform, 
-  you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
-
+    `wasmJsMain` would be the right folder for such calls.
 
 Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html),
 [Compose Multiplatform](https://github.com/JetBrains/compose-multiplatform/#compose-multiplatform),
@@ -19,3 +15,10 @@ We would appreciate your feedback on Compose/Web and Kotlin/Wasm in the public S
 If you face any issues, please report them on [GitHub](https://github.com/JetBrains/compose-multiplatform/issues).
 
 You can open the web application by running the `:composeApp:wasmJsBrowserDevelopmentRun` Gradle task.
+
+Credits
+Github Icon <a target="_blank" href="https://icons8.com/icon/62856/github">GitHub</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+LinkedIn Icon <a target="_blank" href="https://icons8.com/icon/98960/linkedin">LinkedIn</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+Instagram Icon <a target="_blank" href="https://icons8.com/icon/85140/instagram">Instagram</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+Medium Icon <a target="_blank" href="https://icons8.com/icon/BzFWSIqh6bCr/medium">Medium</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+Box Icon <a target="_blank" href="https://icons8.com/icon/83142/box">Box</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
