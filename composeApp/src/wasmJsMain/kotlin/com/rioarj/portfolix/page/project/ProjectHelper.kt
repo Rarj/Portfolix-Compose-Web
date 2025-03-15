@@ -27,6 +27,7 @@ data class Project(
 ) {
     val isFirstItem get() = selectedIndex.value == FIRST_INDEX
     val isLastItem get() = selectedIndex.value == projects.size - 1
+    fun getSelectedProject() = projects[selectedIndex.value]
     fun nextProject() {
         selectedIndex.value++
     }
@@ -53,8 +54,8 @@ internal class ProjectHelper {
                 )
             ),
         ), ProjectModel(
-            desc = "Test 2",
-            title = "Test 2",
+            desc = "CardX, a cutting-edge Kotlin library designed to revolutionize the way you preview Debit Cards within your Android applications. Leveraging the power of Jetpack Compose, CardX offers a seamless integration that enables developers to effortlessly showcase debit card designs with stunning visual appeal. What sets CardX apart is its incorporation of flip animation, adding an engaging and dynamic element to the card preview experience.",
+            title = "CardX",
             links = listOf(
                 LinkModel(
                     name = "Github",
