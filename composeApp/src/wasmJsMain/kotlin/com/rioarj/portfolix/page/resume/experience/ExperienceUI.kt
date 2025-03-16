@@ -34,7 +34,8 @@ import com.rioarj.portfolix.style.orangeColor
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.painterResource
 import portfolix.composeapp.generated.resources.Res
-import portfolix.composeapp.generated.resources.ic_medium
+import portfolix.composeapp.generated.resources.ic_chevron_down
+import portfolix.composeapp.generated.resources.ic_chevron_up
 
 @Composable
 internal fun ExperienceUI(modifier: Modifier = Modifier) {
@@ -68,8 +69,8 @@ internal fun ExperienceUI(modifier: Modifier = Modifier) {
                     },
                     content = {
                         Icon(
-                            painter = painterResource(Res.drawable.ic_medium),
-                            contentDescription = "Previous Button"
+                            painter = painterResource(Res.drawable.ic_chevron_up),
+                            contentDescription = "Previous Button",
                         )
                     },
                 )
@@ -85,8 +86,8 @@ internal fun ExperienceUI(modifier: Modifier = Modifier) {
                     },
                     content = {
                         Icon(
-                            painter = painterResource(Res.drawable.ic_medium),
-                            contentDescription = "Next Button"
+                            painter = painterResource(Res.drawable.ic_chevron_down),
+                            contentDescription = "Next Button",
                         )
                     },
                 )
