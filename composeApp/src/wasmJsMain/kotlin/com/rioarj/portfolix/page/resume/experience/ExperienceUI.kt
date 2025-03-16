@@ -3,15 +3,16 @@ package com.rioarj.portfolix.page.resume.experience
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.pager.VerticalPager
+import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
@@ -47,13 +48,12 @@ internal fun ExperienceUI(modifier: Modifier = Modifier) {
     val enabledNextButton = remember { derivedStateOf { experienceState.value.isLastItem.not() } }
 
     Column(
-        modifier = modifier,
+        modifier = modifier.fillMaxHeight(.9f),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Row(
-            modifier = Modifier.fillMaxWidth().padding(bottom = 64.dp).padding(horizontal = 64.dp),
+            modifier = Modifier.fillMaxSize().padding(all = 16.dp),
             horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically,
         ) {
             IconButton(
                 enabled = enabledPreviousButton.value,
@@ -71,24 +71,25 @@ internal fun ExperienceUI(modifier: Modifier = Modifier) {
                 },
             )
 
-            VerticalPager(
+            HorizontalPager(
                 state = state,
-                modifier = Modifier.width(700.dp),
-                pageSpacing = 8.dp,
-                contentPadding = PaddingValues(24.dp),
+                modifier = Modifier.width(700.dp).fillMaxHeight(),
                 userScrollEnabled = false,
+                verticalAlignment = Alignment.Top,
             ) {
                 Row(
                     modifier = modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically,
+                    verticalAlignment = Alignment.Top,
+                    horizontalArrangement = Arrangement.Center,
                 ) {
                     VerticalDivider(
-                        modifier = Modifier.clip(RoundedCornerShape(percent = 50)).height(40.dp),
-                        thickness = 2.dp,
+                        modifier = Modifier.clip(RoundedCornerShape(percent = 50)).height(48.dp),
+                        thickness = 4.dp,
                         color = orangeColor,
                     )
                     Column(
                         modifier = Modifier.padding(horizontal = 4.dp),
+                        verticalArrangement = Arrangement.Center,
                     ) {
                         Text(
                             text = selectedExperience.companyName,

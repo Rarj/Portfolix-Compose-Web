@@ -1,24 +1,26 @@
 package com.rioarj.portfolix.page.resume
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.pager.VerticalPager
+import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.rioarj.portfolix.component.HeaderPageUI
 import com.rioarj.portfolix.page.resume.education.EducationComponent
 import com.rioarj.portfolix.page.resume.education.EducationHelper
@@ -42,53 +44,69 @@ internal fun ResumeUI(modifier: Modifier = Modifier) {
             title = "Résumé",
             subtitle = "Strive not to be a success, but rather to be of value.",
         )
-        Row {
-            Column {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            Row {
                 menus.value.forEach { menu ->
-                    Row(
-                        modifier = Modifier.background(menu.value.backgroundColor()),
-                        verticalAlignment = Alignment.CenterVertically,
+                    val tabSelectionColor = menu.value.selectionColor()
+                    Column(
+                        modifier = Modifier.padding(8.dp),
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally,
                     ) {
-                        Icon(
-                            painter = painterResource(menu.value.icon),
-                            tint = menu.value.iconColor(),
-                            contentDescription = "${menu.value.name} Icon",
-                        )
-                        Text(
-                            modifier = Modifier.clickable {
+                        IconButton(
+                            onClick = {
                                 menuInstance.setSelectedMenu(menu.key)
                                 menus.value.values.mapIndexed { index, selectedMenu ->
                                     if (menu.value.name.equals(
-                                            selectedMenu.name,
-                                            ignoreCase = true
+                                            selectedMenu.name, ignoreCase = true
                                         )
                                     ) {
                                         coroutineScope.launch { state.animateScrollToPage(index) }
                                     }
                                 }
                             },
-                            text = menu.value.name,
-                            fontSize = 16.sp,
-                            fontWeight = FontWeight.Normal,
-                            color = menu.value.color(),
+                            content = {
+                                Icon(
+                                    modifier = Modifier.size(24.dp),
+                                    painter = painterResource(menu.value.icon),
+                                    tint = tabSelectionColor,
+                                    contentDescription = "${menu.value.name} Icon",
+                                )
+                            },
                         )
-                        Spacer(modifier = Modifier.width(24.dp))
+                        HorizontalDivider(
+                            modifier = Modifier.width(50.dp).clip(
+                                RoundedCornerShape(
+                                    topStartPercent = 50,
+                                    topEndPercent = 50,
+                                )
+                            ),
+                            thickness = 6.dp,
+                            color = tabSelectionColor,
+                        )
                     }
                 }
             }
-            VerticalPager(
+            HorizontalPager(
                 state = state,
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier.fillMaxHeight(.8f),
                 userScrollEnabled = false,
             ) { page ->
                 when (page) {
-                    0 -> {
+                    0 -> ExperienceUI()
+                    1 -> {
                         val educations = EducationHelper.educations
-                        repeat(educations.size) {
-                            EducationComponent(education = educations[it])
+                        Column(
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                        ) {
+                            repeat(educations.size) {
+                                EducationComponent(education = educations[it])
+                            }
                         }
                     }
-                    1 -> ExperienceUI()
+
                     2 -> Text("Technology")
                     3 -> Text("Interests")
                 }

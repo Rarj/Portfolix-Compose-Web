@@ -7,4 +7,4 @@ internal val orangeColor = Color(0xFFFF5823)
 internal val subtitleColor = Color(0xFFFFF8DC)
 
 internal val selectedColor = Color(0xFFFF5823)
-internal val notSelectedColor = Color(0xFFE3E3E3)
+internal val notSelectedColor = Color(0xFFA3A3A3)
