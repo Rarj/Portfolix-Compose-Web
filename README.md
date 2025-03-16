@@ -22,3 +22,9 @@ LinkedIn Icon <a target="_blank" href="https://icons8.com/icon/98960/linkedin">L
 Instagram Icon <a target="_blank" href="https://icons8.com/icon/85140/instagram">Instagram</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
 Medium Icon <a target="_blank" href="https://icons8.com/icon/BzFWSIqh6bCr/medium">Medium</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
 Box Icon <a target="_blank" href="https://icons8.com/icon/83142/box">Box</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+University
+Icon <a href="https://www.freepik.com/icon/graduation-cap_3914110#fromView=search&page=1&position=7&uuid=06df8762-939c-4122-808b-1a43ba5f6ad2">
+Icon by UIcons</a>
+Briefcase Icon <a href="https://www.freepik.com/icon/business-time_7661403">Icon by UIcons</a>
+Technology Icon <a href="https://www.freepik.com/icon/model-cube_15399262">Icon by UIcons</a>
+Confetti Icon <a href="https://www.flaticon.com/uicons">Icon by Uicons</a>>
