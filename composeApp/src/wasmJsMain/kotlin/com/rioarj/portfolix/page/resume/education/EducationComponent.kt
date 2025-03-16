@@ -21,11 +21,36 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.rioarj.portfolix.style.orangeColor
 
+data class EducationModel(
+    val name: String,
+    val degree: String,
+    val date: String,
+)
+
+object EducationHelper {
+    private val _educations = listOf(
+        EducationModel(
+            name = "Budi Luhur University",
+            degree = "Master of Computer Science",
+            date = "2024-current"
+        ),
+        EducationModel(
+            name = "Syekh Yusuf of Islam University",
+            degree = "Bachelor of Computer Science",
+            date = "2014-2018"
+        ),
+    )
+    val educations get() = _educations
+}
+
 @Composable
-internal fun EducationUI(modifier: Modifier = Modifier) {
+internal fun EducationComponent(
+    modifier: Modifier = Modifier,
+    education: EducationModel,
+) {
     Row(
         modifier = modifier.fillMaxWidth(),
-        verticalAlignment = Alignment.Top,
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         VerticalDivider(
             modifier = Modifier.clip(RoundedCornerShape(percent = 50)).height(40.dp),
@@ -33,15 +58,15 @@ internal fun EducationUI(modifier: Modifier = Modifier) {
             color = orangeColor,
         )
         Column(
-            modifier = Modifier.padding(horizontal = 4.dp)
+            modifier = Modifier.padding(horizontal = 4.dp),
         ) {
             Text(
-                "Budi Luhur University",
+                text = education.name,
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold,
             )
             Text(
-                "Master of Computer Science",
+                text = education.degree,
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Normal,
             )
@@ -50,9 +75,9 @@ internal fun EducationUI(modifier: Modifier = Modifier) {
         Text(
             modifier = Modifier.clip(RoundedCornerShape(percent = 50)).background(orangeColor)
                 .padding(all = 8.dp),
-            text = "2024-Current",
+            text = education.date,
             color = Color.White,
-            fontSize = 16.sp,
+            fontSize = 14.sp,
             fontWeight = FontWeight.Bold,
         )
     }

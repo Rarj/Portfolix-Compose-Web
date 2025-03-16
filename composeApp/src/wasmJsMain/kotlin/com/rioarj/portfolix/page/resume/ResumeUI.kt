@@ -20,7 +20,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.rioarj.portfolix.component.HeaderPageUI
-import com.rioarj.portfolix.page.resume.education.EducationUI
+import com.rioarj.portfolix.page.resume.education.EducationComponent
+import com.rioarj.portfolix.page.resume.education.EducationHelper
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.painterResource
 
@@ -80,7 +81,12 @@ internal fun ResumeUI(modifier: Modifier = Modifier) {
                 userScrollEnabled = false,
             ) { page ->
                 when (page) {
-                    0 -> EducationUI()
+                    0 -> {
+                        val educations = EducationHelper.educations
+                        repeat(educations.size) {
+                            EducationComponent(education = educations[it])
+                        }
+                    }
                     1 -> Text("Work Experience")
                     2 -> Text("Technology")
                     3 -> Text("Interests")
