@@ -8,7 +8,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import com.rioarj.portfolix.page.AboutMeUI
 import com.rioarj.portfolix.page.HomeUI
+import com.rioarj.portfolix.page.project.ProjectUI
+import com.rioarj.portfolix.page.resume.ResumeUI
 import com.rioarj.portfolix.style.PoppinsTypography
 import com.rioarj.portfolix.toolbar.ToolbarUiKit
 import kotlinx.coroutines.launch
@@ -19,7 +22,7 @@ fun App() {
         typography = PoppinsTypography(),
     ) {
         val coroutineScope = rememberCoroutineScope()
-        val state = rememberPagerState { 3 }
+        val state = rememberPagerState { 4 }
 
         Column {
             ToolbarUiKit(onScrollToPage = { index ->
@@ -35,16 +38,9 @@ fun App() {
             ) { page ->
                 when (page) {
                     0 -> HomeUI()
-                    1 -> {
-                        // TODO: Integrate with Resume page
-                    }
-                    2 -> {
-
-                    }
-
-                    3 -> {
-                        // TODO: Integrate with Project page
-                    }
+                    1 -> AboutMeUI()
+                    2 -> ResumeUI()
+                    3 -> ProjectUI()
                 }
             }
         }
