@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.sp
 import com.rioarj.portfolix.component.HeaderPageUI
 import com.rioarj.portfolix.page.resume.education.EducationComponent
 import com.rioarj.portfolix.page.resume.education.EducationHelper
+import com.rioarj.portfolix.page.resume.experience.ExperienceUI
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.painterResource
 
@@ -87,7 +88,7 @@ internal fun ResumeUI(modifier: Modifier = Modifier) {
                             EducationComponent(education = educations[it])
                         }
                     }
-                    1 -> Text("Work Experience")
+                    1 -> ExperienceUI()
                     2 -> Text("Technology")
                     3 -> Text("Interests")
                 }
