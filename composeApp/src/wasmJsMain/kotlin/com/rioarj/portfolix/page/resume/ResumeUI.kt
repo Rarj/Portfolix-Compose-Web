@@ -5,8 +5,8 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.pager.VerticalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.Icon
@@ -20,6 +20,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.rioarj.portfolix.component.HeaderPageUI
+import com.rioarj.portfolix.page.resume.education.EducationUI
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.painterResource
 
@@ -32,7 +33,7 @@ internal fun ResumeUI(modifier: Modifier = Modifier) {
     val menus = remember { menuInstance.getNavigationMenus() }
 
     Column(
-        modifier = modifier,
+        modifier = modifier.width(1080.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         HeaderPageUI(
@@ -75,11 +76,11 @@ internal fun ResumeUI(modifier: Modifier = Modifier) {
             }
             VerticalPager(
                 state = state,
-                modifier = Modifier.wrapContentSize(),
+                modifier = Modifier.fillMaxSize(),
                 userScrollEnabled = false,
             ) { page ->
                 when (page) {
-                    0 -> Text("Education")
+                    0 -> EducationUI()
                     1 -> Text("Work Experience")
                     2 -> Text("Technology")
                     3 -> Text("Interests")
