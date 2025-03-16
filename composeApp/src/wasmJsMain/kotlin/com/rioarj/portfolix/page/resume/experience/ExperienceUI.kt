@@ -1,6 +1,5 @@
 package com.rioarj.portfolix.page.resume.experience
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -48,87 +47,134 @@ internal fun ExperienceUI(modifier: Modifier = Modifier) {
     val enabledNextButton = remember { derivedStateOf { experienceState.value.isLastItem.not() } }
 
     Column(
-        modifier = modifier.fillMaxHeight(.9f),
+        modifier = modifier.fillMaxHeight(),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Row(
             modifier = Modifier.fillMaxSize().padding(all = 16.dp),
             horizontalArrangement = Arrangement.Center,
         ) {
-            IconButton(
-                enabled = enabledPreviousButton.value,
-                onClick = {
-                    coroutineScope.launch {
-                        experienceState.value.previousExperience()
-                        state.animateScrollToPage(experienceState.value.selectedIndex.value)
-                    }
-                },
-                content = {
-                    Icon(
-                        painter = painterResource(Res.drawable.ic_medium),
-                        contentDescription = "Previous Button"
-                    )
-                },
-            )
+            Column(
+                modifier = Modifier.padding(end = 16.dp),
+            ) {
+                IconButton(
+                    modifier = Modifier.size(24.dp),
+                    enabled = enabledPreviousButton.value,
+                    onClick = {
+                        coroutineScope.launch {
+                            experienceState.value.previousExperience()
+                            state.animateScrollToPage(experienceState.value.selectedIndex.value)
+                        }
+                    },
+                    content = {
+                        Icon(
+                            painter = painterResource(Res.drawable.ic_medium),
+                            contentDescription = "Previous Button"
+                        )
+                    },
+                )
+                Spacer(modifier = Modifier.size(4.dp))
+                IconButton(
+                    modifier = Modifier.size(24.dp),
+                    enabled = enabledNextButton.value,
+                    onClick = {
+                        coroutineScope.launch {
+                            experienceState.value.nextExperience()
+                            state.animateScrollToPage(experienceState.value.selectedIndex.value)
+                        }
+                    },
+                    content = {
+                        Icon(
+                            painter = painterResource(Res.drawable.ic_medium),
+                            contentDescription = "Next Button"
+                        )
+                    },
+                )
+            }
 
             HorizontalPager(
                 state = state,
-                modifier = Modifier.width(700.dp).fillMaxHeight(),
+                modifier = Modifier.width(800.dp).fillMaxHeight(),
                 userScrollEnabled = false,
                 verticalAlignment = Alignment.Top,
             ) {
-                Row(
-                    modifier = modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.Top,
-                    horizontalArrangement = Arrangement.Center,
-                ) {
-                    VerticalDivider(
-                        modifier = Modifier.clip(RoundedCornerShape(percent = 50)).height(48.dp),
-                        thickness = 4.dp,
-                        color = orangeColor,
-                    )
-                    Column(
-                        modifier = Modifier.padding(horizontal = 4.dp),
-                        verticalArrangement = Arrangement.Center,
+                Column {
+                    Row(
+                        modifier = modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.Top,
+                        horizontalArrangement = Arrangement.Start,
                     ) {
-                        Text(
-                            text = selectedExperience.companyName,
-                            fontSize = 16.sp,
-                            fontWeight = FontWeight.Bold,
+                        VerticalDivider(
+                            modifier = Modifier.clip(RoundedCornerShape(percent = 50))
+                                .height(48.dp),
+                            thickness = 4.dp,
+                            color = orangeColor,
                         )
-                        Text(
-                            text = selectedExperience.title,
-                            fontSize = 16.sp,
-                            fontWeight = FontWeight.Normal,
-                        )
+                        Column(
+                            modifier = Modifier.padding(horizontal = 4.dp),
+                            verticalArrangement = Arrangement.Center,
+                        ) {
+                            Text(
+                                text = selectedExperience.companyName,
+                                fontSize = 16.sp,
+                                fontWeight = FontWeight.Bold,
+                            )
+
+                            Text(
+                                text = buildString {
+                                    append(selectedExperience.title)
+                                    append(" • ")
+                                    append(selectedExperience.startDate)
+                                    append("-")
+                                    append(selectedExperience.endDate)
+                                    append(" • ")
+                                    append(selectedExperience.yearsOfExperience())
+                                },
+                                fontSize = 16.sp,
+                                fontWeight = FontWeight.Normal,
+                            )
+                        }
                     }
-                    Spacer(modifier = Modifier.size(100.dp))
+
+                    Spacer(modifier = Modifier.size(12.dp))
+
+                    val descriptions = selectedExperience.descriptions
                     Text(
-                        modifier = Modifier.clip(RoundedCornerShape(percent = 50)).background(
-                            orangeColor
-                        ).padding(all = 8.dp),
-                        text = selectedExperience.yearsOfExperience(),
-                        color = Color.White,
+                        text = "Responsibilities",
+                        color = Color.Black,
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Bold,
                     )
+                    repeat(descriptions.size) { index ->
+                        Text(
+                            text = descriptions[index],
+                            color = Color.Black,
+                            fontSize = 14.sp,
+                            fontWeight = FontWeight.Medium,
+                        )
+                    }
+
+                    Spacer(modifier = Modifier.size(14.dp))
+
+                    val achievements = selectedExperience.achievements
+                    if (achievements.isNotEmpty()) {
+                        Text(
+                            text = "Achievements",
+                            color = Color.Black,
+                            fontSize = 14.sp,
+                            fontWeight = FontWeight.Bold
+                        )
+                        repeat(achievements.size) { index ->
+                            Text(
+                                text = achievements[index],
+                                color = Color.Black,
+                                fontSize = 14.sp,
+                                fontWeight = FontWeight.Medium,
+                            )
+                        }
+                    }
                 }
             }
-            IconButton(
-                enabled = enabledNextButton.value,
-                onClick = {
-                    coroutineScope.launch {
-                        experienceState.value.nextExperience()
-                        state.animateScrollToPage(experienceState.value.selectedIndex.value)
-                    }
-                },
-                content = {
-                    Icon(
-                        painter = painterResource(Res.drawable.ic_medium),
-                        contentDescription = "Next Button"
-                    )
-                },
-            )
         }
     }
 }

@@ -91,7 +91,7 @@ internal fun ResumeUI(modifier: Modifier = Modifier) {
             }
             HorizontalPager(
                 state = state,
-                modifier = Modifier.fillMaxHeight(.8f),
+                modifier = Modifier.fillMaxHeight(),
                 userScrollEnabled = false,
             ) { page ->
                 when (page) {
