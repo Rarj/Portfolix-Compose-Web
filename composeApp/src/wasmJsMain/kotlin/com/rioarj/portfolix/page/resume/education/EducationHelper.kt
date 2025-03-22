@@ -11,12 +11,12 @@ object EducationHelper {
         EducationModel(
             name = "Budi Luhur University",
             degree = "Master of Computer Science",
-            date = "2024-current"
+            date = "2024–current"
         ),
         EducationModel(
             name = "Syekh Yusuf of Islam University",
             degree = "Bachelor of Computer Science",
-            date = "2014-2018"
+            date = "2014–2018"
         ),
     )
     val educations get() = _educations
