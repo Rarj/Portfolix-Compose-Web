@@ -1,5 +1,7 @@
-package com.rioarj.portfolix.page
+package com.rioarj.portfolix.page.home
 
+import androidx.compose.foundation.BasicTooltipBox
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -7,14 +9,22 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberBasicTooltipState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
+import androidx.compose.material3.TooltipDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -23,13 +33,9 @@ import com.rioarj.portfolix.style.backgroundColor
 import com.rioarj.portfolix.style.subtitleColor
 import org.jetbrains.compose.resources.painterResource
 import portfolix.composeapp.generated.resources.Res
-import portfolix.composeapp.generated.resources.ic_github
-import portfolix.composeapp.generated.resources.ic_instagram
-import portfolix.composeapp.generated.resources.ic_linkedin
-import portfolix.composeapp.generated.resources.ic_medium
-import portfolix.composeapp.generated.resources.ic_storage
 import portfolix.composeapp.generated.resources.profile
 
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
 internal fun HomeUI(modifier: Modifier = Modifier) {
     Column(
@@ -48,19 +54,40 @@ internal fun HomeUI(modifier: Modifier = Modifier) {
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Row {
-                Image(painter = painterResource(Res.drawable.ic_github), "Github")
-                Spacer(modifier = Modifier.size(4.dp))
-                Image(painter = painterResource(Res.drawable.ic_linkedin), "LinkedIn")
-                Spacer(modifier = Modifier.size(4.dp))
-                Image(painter = painterResource(Res.drawable.ic_instagram), "Instagram")
-                Spacer(modifier = Modifier.size(4.dp))
-                Image(
-                    painter = painterResource(Res.drawable.ic_medium), contentDescription = "Medium"
-                )
-                Spacer(modifier = Modifier.size(4.dp))
-                Image(
-                    painter = painterResource(Res.drawable.ic_storage), "Sonatype - Maven Central"
-                )
+                val url = LocalUriHandler.current
+                HomeHelper.portfolioPlatform.forEach { model ->
+                    val tooltipPosition = TooltipDefaults.rememberPlainTooltipPositionProvider()
+                    val tooltipState = rememberBasicTooltipState(isPersistent = false)
+
+                    BasicTooltipBox(
+                        positionProvider = tooltipPosition,
+                        tooltip = {
+                            Text(
+                                modifier = Modifier
+                                    .clip(RoundedCornerShape(16))
+                                    .background(Color.White)
+                                    .padding(4.dp),
+                                text = model.name,
+                            )
+                        },
+                        state = tooltipState,
+                    ) {
+                        IconButton(
+                            modifier = Modifier.size(30.dp),
+                            onClick = { url.openUri(model.url) },
+                            content = {
+                                Icon(
+                                    modifier = Modifier.padding(all = 2.dp),
+                                    tint = Color.White,
+                                    painter = painterResource(model.icon),
+                                    contentDescription = model.name,
+                                )
+                            },
+                        )
+                    }
+
+                    Spacer(modifier = Modifier.size(4.dp))
+                }
             }
             Row {
                 Text(
