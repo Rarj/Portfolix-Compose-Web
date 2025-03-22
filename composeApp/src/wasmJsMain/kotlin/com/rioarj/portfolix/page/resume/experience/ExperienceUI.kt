@@ -27,6 +27,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -36,6 +37,7 @@ import org.jetbrains.compose.resources.painterResource
 import portfolix.composeapp.generated.resources.Res
 import portfolix.composeapp.generated.resources.ic_chevron_down
 import portfolix.composeapp.generated.resources.ic_chevron_up
+import portfolix.composeapp.generated.resources.ic_link
 
 @Composable
 internal fun ExperienceUI(modifier: Modifier = Modifier) {
@@ -114,21 +116,38 @@ internal fun ExperienceUI(modifier: Modifier = Modifier) {
                             modifier = Modifier.padding(horizontal = 4.dp),
                             verticalArrangement = Arrangement.Center,
                         ) {
-                            Text(
-                                text = selectedExperience.companyName,
-                                fontSize = 16.sp,
-                                fontWeight = FontWeight.Bold,
-                            )
+                            Row {
+                                Text(
+                                    text = selectedExperience.companyName,
+                                    fontSize = 16.sp,
+                                    fontWeight = FontWeight.Bold,
+                                )
+                                if (selectedExperience.appLinks.isNotEmpty()) {
+                                    val url = LocalUriHandler.current
+                                    IconButton(
+                                        modifier = Modifier.padding(start = 4.dp).size(24.dp),
+                                        onClick = {
+                                            url.openUri(selectedExperience.appLinks.first())
+                                        },
+                                        content = {
+                                            Icon(
+                                                painter = painterResource(Res.drawable.ic_link),
+                                                contentDescription = "Link Icon to Play Store",
+                                            )
+                                        }
+                                    )
+                                }
+                            }
 
                             Text(
                                 text = buildString {
                                     append(selectedExperience.title)
                                     append(" • ")
                                     append(selectedExperience.startDate)
-                                    append("-")
+                                    append("–")
                                     append(selectedExperience.endDate)
                                     append(" • ")
-                                    append(selectedExperience.yearsOfExperience())
+                                    append(selectedExperience.yearsOfExperience)
                                 },
                                 fontSize = 16.sp,
                                 fontWeight = FontWeight.Normal,

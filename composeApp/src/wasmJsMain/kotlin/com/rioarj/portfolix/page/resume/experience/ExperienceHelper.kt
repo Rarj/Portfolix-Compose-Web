@@ -5,10 +5,30 @@ import androidx.compose.runtime.mutableStateOf
 internal class ExperienceHelper {
     private val _experiences = listOf(
         ExperienceModel(
-            companyName = "PT. KB Finansia Multi Finance - Kreditplus",
+            companyName = "PT Prodia Widyahusada Tbk - U by Prodia",
             title = "Sr. Android Engineer",
-            startDate = "2023-02",
-            endDate = "2024-06",
+            startDate = "Oct 2024",
+            endDate = "Mar 2025",
+            yearsOfExperience = "6mos",
+            descriptions = listOf(
+                "• crafting Chronic Disease Management feature depend on PRD and TSD",
+                "• write a scalable and maintainable code with Kotlin and other stack such as Hilt and Jetpack libraries",
+                "• crafting the UI using Jetpack Compose",
+                "• code reviewing other member’s code before merge into master branch",
+                "• working closely with cross functional team such as iOS, Backend, QA, UI/UX and Product team",
+                "• do pairing to develop, sync and solve conflict between tasks with Android Lead to keep uptodate with latest code",
+            ),
+            achievements = emptyList(),
+            appLinks = listOf(
+                "https://play.google.com/store/apps/details?id=com.prodiadigital.patient&hl=id",
+            ),
+        ),
+        ExperienceModel(
+            companyName = "PT KB Finansia Multi Finance - Kreditplus",
+            title = "Sr. Android Engineer",
+            startDate = "Feb 2023",
+            endDate = "Jun 2024",
+            yearsOfExperience = "1y 5mos",
             descriptions = listOf(
                 "• build and maintenance features depend on PRD",
                 "• write a scalable and maintanable code with Kotlin and other stack such as Koin and Jetpack libraries",
@@ -29,8 +49,9 @@ internal class ExperienceHelper {
         ExperienceModel(
             companyName = "PT Dynamo Media Network - kumparan.com",
             title = "Android Engineer",
-            startDate = "2021-09",
-            endDate = "2022-12",
+            startDate = "Sept 2021",
+            endDate = "Dec 2022",
+            yearsOfExperience = "1yr 4mos",
             descriptions = listOf(
                 "• build UI Kit from scratch to boost team productivity while development and maintenance phase",
                 "• build features depend on PRD and create TRD for specific case",
@@ -45,14 +66,15 @@ internal class ExperienceHelper {
                 "• become mentor of Kumparan Academy Internship program",
             ),
             appLinks = listOf(
-                "https://play.google.com/store/apps/details?id=com.kreditplus.kpm.android",
+                "https://play.google.com/store/apps/details?id=com.app.icapp&hl=id",
             ),
         ),
         ExperienceModel(
             companyName = "PT Bank Mandiri (Persero) Tbk",
             title = "Android Engineer",
-            startDate = "2021-05",
-            endDate = "2021-08",
+            startDate = "May 2021",
+            endDate = "Aug 2021",
+            yearsOfExperience = "4mos",
             descriptions = listOf(
                 "• develop RMT-Sales Tools with JAVA and Kotlin",
                 "• collaborate with cross functional team such as System Analyst, QA, PM and Backend",
@@ -64,8 +86,9 @@ internal class ExperienceHelper {
         ExperienceModel(
             companyName = "PT Cipta Piranti Sejahtera - accurate.id",
             title = "Android Engineer",
-            startDate = "2019-07",
-            endDate = "2021-05",
+            startDate = "Jul 2019",
+            endDate = "May 2021",
+            yearsOfExperience = "1yr 11mos",
             descriptions = listOf(
                 "• develop POS features",
                 "• accurate Lite revamp: v2",
@@ -76,17 +99,17 @@ internal class ExperienceHelper {
             achievements = emptyList(),
             appLinks = listOf(
                 "https://play.google.com/store/apps/details?id=com.cpssoft.mobile.alpha",
-                "https://play.google.com/store/apps/details?id=com.cpssoft.mobile.titan",
             ),
         ),
         ExperienceModel(
             companyName = "PT Solusi Teknologi Niaga - qasir.id",
             title = "Jr. Android Engineer",
-            startDate = "2018-11",
-            endDate = "2019-06",
+            startDate = "Nov 2018",
+            endDate = "Jun 2019",
+            yearsOfExperience = "8mos",
             descriptions = listOf(
-                "• Develop POS features and some features of Mitra apps with other development team",
-                "• Translate design into good quality code and pixel perfect",
+                "• develop POS features and some features of Mitra apps with other development team",
+                "• translate design into good quality code and pixel perfect",
             ),
             achievements = emptyList(),
             appLinks = listOf(

@@ -8,12 +8,11 @@ data class ExperienceModel(
     val title: String,
     val startDate: String,
     val endDate: String,
+    val yearsOfExperience: String,
     val descriptions: List<String>,
     val achievements: List<String>,
     val appLinks: List<String>,
-) {
-    fun yearsOfExperience() = "yearsofwork"
-}
+)
 
 private const val FIRST_INDEX = 0
 
