@@ -133,6 +133,7 @@ internal fun ExperienceUI(modifier: Modifier = Modifier) {
                                             Icon(
                                                 painter = painterResource(Res.drawable.ic_link),
                                                 contentDescription = "Link Icon to Play Store",
+                                                tint = Color.Blue,
                                             )
                                         }
                                     )

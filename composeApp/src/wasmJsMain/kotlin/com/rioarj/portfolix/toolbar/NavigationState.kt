@@ -15,7 +15,7 @@ class NavigationState {
     private val menus = mutableStateOf(mapOf(
         "home" to Menu(name = "Home", isSelected = true),
         "about_me" to Menu(name = "About Me", isSelected = false),
-        "resume" to Menu(name = "Résumé", isSelected = false),
+        "resume" to Menu(name = "Working Experience", isSelected = false),
         "projects" to Menu(name = "Projects", isSelected = false),
     ))
 
