@@ -8,7 +8,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import com.rioarj.portfolix.page.AboutMeUI
+import com.rioarj.portfolix.page.aboutme.AboutMeUI
 import com.rioarj.portfolix.page.home.HomeUI
 import com.rioarj.portfolix.page.project.ProjectUI
 import com.rioarj.portfolix.page.resume.ResumeUI

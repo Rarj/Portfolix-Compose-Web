@@ -1,14 +1,16 @@
-package com.rioarj.portfolix.page
+package com.rioarj.portfolix.page.aboutme
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.material3.VerticalDivider
@@ -20,8 +22,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.rioarj.portfolix.component.HeaderPageUI
-import com.rioarj.portfolix.page.resume.education.EducationComponent
-import com.rioarj.portfolix.page.resume.education.EducationHelper
 import com.rioarj.portfolix.style.backgroundColor
 import com.rioarj.portfolix.style.orangeColor
 import com.rioarj.portfolix.style.subtitleColor
@@ -41,16 +41,16 @@ internal fun AboutMeUI(modifier: Modifier = Modifier) {
         )
         Row(
             modifier = Modifier.wrapContentSize().padding(bottom = 100.dp)
-                .padding(horizontal = 200.dp).clip(RoundedCornerShape(8.dp))
+                .padding(horizontal = 300.dp).clip(RoundedCornerShape(8.dp))
                 .background(backgroundColor)
         ) {
             Image(
-                modifier = Modifier.wrapContentSize(),
+                modifier = Modifier.wrapContentWidth().fillMaxHeight(),
                 painter = painterResource(Res.drawable.about_me),
                 contentDescription = "Profile Picture"
             )
             Column(
-                modifier = Modifier.fillMaxSize().padding(top = 24.dp, start = 24.dp, end = 56.dp),
+                modifier = Modifier.fillMaxSize().padding(start = 24.dp, end = 56.dp),
                 verticalArrangement = Arrangement.Center,
             ) {
                 Text(
@@ -59,9 +59,12 @@ internal fun AboutMeUI(modifier: Modifier = Modifier) {
                     fontSize = 56.sp,
                     fontWeight = FontWeight.Bold,
                 )
-                Row {
+                Row(
+                    modifier = Modifier.height(330.dp).padding(end = 220.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
                     VerticalDivider(
-                        modifier = Modifier.clip(RoundedCornerShape(percent = 50)).height(190.dp),
+                        modifier = Modifier.clip(RoundedCornerShape(percent = 50)),
                         thickness = 4.dp,
                         color = orangeColor,
                     )
@@ -71,24 +74,15 @@ internal fun AboutMeUI(modifier: Modifier = Modifier) {
                         color = subtitleColor,
                         fontSize = 20.sp,
                         fontWeight = FontWeight.SemiBold,
-                        letterSpacing = 0.7.sp,
+                        letterSpacing = .7.sp,
+                        lineHeight = 36.sp,
+
                     )
                 }
 
-                val educations = EducationHelper.educations
-                Column(
-                    modifier = Modifier.padding(top = 24.dp, end = 24.dp)
-                        .clip(RoundedCornerShape(8.dp)),
-                ) {
-                    Text(
-                        text = "Study",
-                        color = orangeColor,
-                        fontSize = 56.sp,
-                        fontWeight = FontWeight.Bold,
-                    )
-                    repeat(educations.size) {
-                        EducationComponent(education = educations[it])
-                    }
+                Row(modifier = Modifier.padding(top = 24.dp)) {
+                    StudyUI()
+                    SkillUI()
                 }
             }
         }
