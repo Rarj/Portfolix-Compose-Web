@@ -32,7 +32,7 @@ import portfolix.composeapp.generated.resources.about_me
 @Composable
 internal fun AboutMeUI(modifier: Modifier = Modifier) {
     Column(
-        modifier = modifier,
+        modifier = modifier.background(backgroundColor),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         HeaderPageUI(
@@ -41,6 +41,7 @@ internal fun AboutMeUI(modifier: Modifier = Modifier) {
         )
         Row(
             modifier = Modifier.wrapContentSize().padding(bottom = 100.dp)
+                .padding(top = 64.dp)
                 .padding(horizontal = 300.dp).clip(RoundedCornerShape(8.dp))
                 .background(backgroundColor)
         ) {
