@@ -1,16 +1,17 @@
 package com.rioarj.portfolix.page.project
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.Card
@@ -29,10 +30,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.rioarj.portfolix.component.HeaderPageUI
+import com.rioarj.portfolix.style.backgroundColor
+import com.rioarj.portfolix.style.notSelectedColor
+import com.rioarj.portfolix.style.selectedColor
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.painterResource
 import portfolix.composeapp.generated.resources.Res
-import portfolix.composeapp.generated.resources.ic_medium
+import portfolix.composeapp.generated.resources.ic_chevron_left
+import portfolix.composeapp.generated.resources.ic_storage
 
 @Composable
 internal fun ProjectUI(modifier: Modifier = Modifier) {
@@ -44,7 +49,7 @@ internal fun ProjectUI(modifier: Modifier = Modifier) {
     val enabledNextButton = remember { derivedStateOf { projectState.value.isLastItem.not() } }
 
     Column(
-        modifier = modifier,
+        modifier = modifier.fillMaxSize().background(backgroundColor),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         HeaderPageUI(
@@ -52,30 +57,14 @@ internal fun ProjectUI(modifier: Modifier = Modifier) {
             subtitle = "Done is better than perfect",
         )
 
-        Row(
-            modifier = Modifier.fillMaxWidth().padding(bottom = 64.dp).padding(horizontal = 64.dp),
-            horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically,
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Top,
         ) {
-            IconButton(
-                enabled = enabledPreviousButton.value,
-                onClick = {
-                    coroutineScope.launch {
-                        projectState.value.previousProject()
-                        state.animateScrollToPage(projectState.value.selectedIndex.value)
-                    }
-                },
-                content = {
-                    Icon(
-                        painter = painterResource(Res.drawable.ic_medium),
-                        contentDescription = "Previous Button"
-                    )
-                },
-            )
-
             HorizontalPager(
                 state = state,
-                modifier = Modifier.width(700.dp),
+                modifier = Modifier.fillMaxWidth(.4f).fillMaxHeight(.8f).padding(top = 36.dp),
                 pageSpacing = 8.dp,
                 contentPadding = PaddingValues(24.dp),
                 userScrollEnabled = false,
@@ -98,21 +87,43 @@ internal fun ProjectUI(modifier: Modifier = Modifier) {
                 }
             }
 
-            IconButton(
-                enabled = enabledNextButton.value,
-                onClick = {
-                    coroutineScope.launch {
-                        projectState.value.nextProject()
-                        state.animateScrollToPage(projectState.value.selectedIndex.value)
-                    }
-                },
-                content = {
-                    Icon(
-                        painter = painterResource(Res.drawable.ic_medium),
-                        contentDescription = "Next Button"
-                    )
-                },
-            )
+            Row {
+                IconButton(
+                    modifier = Modifier.size(24.dp),
+                    enabled = enabledPreviousButton.value,
+                    onClick = {
+                        coroutineScope.launch {
+                            projectState.value.previousProject()
+                            state.animateScrollToPage(projectState.value.selectedIndex.value)
+                        }
+                    },
+                    content = {
+                        Icon(
+                            painter = painterResource(Res.drawable.ic_chevron_left),
+                            contentDescription = "Previous Button",
+                            tint = if (enabledPreviousButton.value) selectedColor else notSelectedColor,
+                        )
+                    },
+                )
+
+                IconButton(
+                    modifier = Modifier.size(24.dp),
+                    enabled = enabledNextButton.value,
+                    onClick = {
+                        coroutineScope.launch {
+                            projectState.value.nextProject()
+                            state.animateScrollToPage(projectState.value.selectedIndex.value)
+                        }
+                    },
+                    content = {
+                        Icon(
+                            painter = painterResource(Res.drawable.ic_storage),
+                            contentDescription = "Next Button",
+                            tint = if (enabledNextButton.value) selectedColor else notSelectedColor,
+                        )
+                    },
+                )
+            }
         }
     }
 }
