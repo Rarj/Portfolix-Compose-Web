@@ -52,7 +52,7 @@ internal fun EducationComponent(
                 ) {
                     Text(
                         text = education.name,
-                        fontSize = 20.sp,
+                        fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color.White,
                     )
@@ -62,7 +62,7 @@ internal fun EducationComponent(
                             append(" • ")
                             append(education.date)
                         },
-                        fontSize = 20.sp,
+                        fontSize = 16.sp,
                         fontWeight = FontWeight.Normal,
                         color = subtitleColor,
                     )

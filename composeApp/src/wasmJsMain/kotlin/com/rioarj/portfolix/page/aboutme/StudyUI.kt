@@ -26,7 +26,7 @@ internal fun RowScope.StudyUI(modifier: Modifier = Modifier) {
             Text(
                 text = "Study",
                 color = orangeColor,
-                fontSize = 56.sp,
+                fontSize = 24.sp,
                 fontWeight = FontWeight.Bold,
             )
             repeat(educations.size) {

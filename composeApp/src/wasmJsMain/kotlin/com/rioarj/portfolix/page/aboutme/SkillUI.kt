@@ -29,7 +29,7 @@ internal fun RowScope.SkillUI(modifier: Modifier = Modifier) {
             Text(
                 text = "Skills",
                 color = orangeColor,
-                fontSize = 56.sp,
+                fontSize = 24.sp,
                 fontWeight = FontWeight.Bold,
             )
 
@@ -60,9 +60,9 @@ internal fun RowScope.SkillUI(modifier: Modifier = Modifier) {
                 repeat(skills.size) { index ->
                     Text(
                         modifier = Modifier.padding(2.dp).clip(RoundedCornerShape(8.dp))
-                            .background(subtitleColor).padding(8.dp),
+                            .background(subtitleColor).padding(horizontal = 8.dp, vertical = 4.dp),
                         text = skills[index],
-                        fontSize = 18.sp,
+                        fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
                         color = backgroundColor,
                     )
