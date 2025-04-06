@@ -26,12 +26,15 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.rioarj.portfolix.style.notSelectedColor
 import com.rioarj.portfolix.style.orangeColor
+import com.rioarj.portfolix.style.selectedColor
+import com.rioarj.portfolix.style.subtitleColor
+import com.rioarj.portfolix.style.urlColor
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.painterResource
 import portfolix.composeapp.generated.resources.Res
@@ -50,7 +53,7 @@ internal fun ExperienceUI(modifier: Modifier = Modifier) {
     val enabledNextButton = remember { derivedStateOf { experienceState.value.isLastItem.not() } }
 
     Column(
-        modifier = modifier.fillMaxHeight(),
+        modifier = modifier.fillMaxHeight().padding(top = 36.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Row(
@@ -73,6 +76,7 @@ internal fun ExperienceUI(modifier: Modifier = Modifier) {
                         Icon(
                             painter = painterResource(Res.drawable.ic_chevron_up),
                             contentDescription = "Previous Button",
+                            tint = if (enabledPreviousButton.value) selectedColor else notSelectedColor,
                         )
                     },
                 )
@@ -90,6 +94,7 @@ internal fun ExperienceUI(modifier: Modifier = Modifier) {
                         Icon(
                             painter = painterResource(Res.drawable.ic_chevron_down),
                             contentDescription = "Next Button",
+                            tint = if (enabledNextButton.value) selectedColor else notSelectedColor,
                         )
                     },
                 )
@@ -119,13 +124,14 @@ internal fun ExperienceUI(modifier: Modifier = Modifier) {
                             Row {
                                 Text(
                                     text = selectedExperience.companyName,
-                                    fontSize = 16.sp,
+                                    fontSize = 20.sp,
                                     fontWeight = FontWeight.Bold,
+                                    color = subtitleColor,
                                 )
                                 if (selectedExperience.appLinks.isNotEmpty()) {
                                     val url = LocalUriHandler.current
-                                    IconButton(
-                                        modifier = Modifier.padding(start = 4.dp).size(24.dp),
+                                    IconButton(modifier = Modifier.padding(start = 4.dp)
+                                        .size(24.dp),
                                         onClick = {
                                             url.openUri(selectedExperience.appLinks.first())
                                         },
@@ -133,10 +139,9 @@ internal fun ExperienceUI(modifier: Modifier = Modifier) {
                                             Icon(
                                                 painter = painterResource(Res.drawable.ic_link),
                                                 contentDescription = "Link Icon to Play Store",
-                                                tint = Color.Blue,
+                                                tint = urlColor,
                                             )
-                                        }
-                                    )
+                                        })
                                 }
                             }
 
@@ -152,6 +157,7 @@ internal fun ExperienceUI(modifier: Modifier = Modifier) {
                                 },
                                 fontSize = 16.sp,
                                 fontWeight = FontWeight.Normal,
+                                color = subtitleColor,
                             )
                         }
                     }
@@ -161,16 +167,16 @@ internal fun ExperienceUI(modifier: Modifier = Modifier) {
                     val descriptions = selectedExperience.descriptions
                     Text(
                         text = "Responsibilities",
-                        color = Color.Black,
-                        fontSize = 14.sp,
+                        color = subtitleColor,
+                        fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
                     )
                     repeat(descriptions.size) { index ->
                         Text(
                             text = descriptions[index],
-                            color = Color.Black,
-                            fontSize = 14.sp,
-                            fontWeight = FontWeight.Medium,
+                            color = subtitleColor,
+                            fontSize = 16.sp,
+                            fontWeight = FontWeight.Normal,
                         )
                     }
 
@@ -180,16 +186,16 @@ internal fun ExperienceUI(modifier: Modifier = Modifier) {
                     if (achievements.isNotEmpty()) {
                         Text(
                             text = "Achievements",
-                            color = Color.Black,
-                            fontSize = 14.sp,
+                            color = subtitleColor,
+                            fontSize = 16.sp,
                             fontWeight = FontWeight.Bold
                         )
                         repeat(achievements.size) { index ->
                             Text(
                                 text = achievements[index],
-                                color = Color.Black,
-                                fontSize = 14.sp,
-                                fontWeight = FontWeight.Medium,
+                                color = subtitleColor,
+                                fontSize = 16.sp,
+                                fontWeight = FontWeight.Normal,
                             )
                         }
                     }
