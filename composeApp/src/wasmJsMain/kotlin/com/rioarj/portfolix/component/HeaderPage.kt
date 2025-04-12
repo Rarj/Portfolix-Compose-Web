@@ -29,27 +29,25 @@ fun ColumnScope.HeaderPageUI(
 ) {
     this.apply {
         Column(
-            modifier = Modifier.clip(RoundedCornerShape(50)).background(subtitleColor)
-                .padding(horizontal = 48.dp),
+            modifier = Modifier.clip(
+                RoundedCornerShape(
+                    topStartPercent = 10,
+                    topEndPercent = 50,
+                    bottomEndPercent = 10,
+                    bottomStartPercent = 50,
+                )
+            ).background(subtitleColor).padding(all = 20.dp),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Spacer(modifier = Modifier.size(12.dp))
-            Text(
-                text = title,
-                color = Color.Black,
-                fontSize = 24.sp,
-                fontWeight = FontWeight.Bold,
-            )
             Text(
                 text = subtitle,
                 color = Color.Black,
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Normal,
             )
-            Spacer(modifier = Modifier.size(12.dp))
         }
-        Spacer(modifier = Modifier.size(8.dp))
+        Spacer(modifier = Modifier.size(4.dp))
         HorizontalDivider(
             modifier = Modifier.width(100.dp).clip(RoundedCornerShape(percent = 50)),
             color = orangeColor,

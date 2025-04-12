@@ -1,12 +1,14 @@
 package com.rioarj.portfolix.page.project
 
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import org.jetbrains.compose.resources.DrawableResource
 import portfolix.composeapp.generated.resources.Res
 import portfolix.composeapp.generated.resources.ic_github
+import portfolix.composeapp.generated.resources.ic_link_arrow
+import portfolix.composeapp.generated.resources.project_movix
 
 data class ProjectModel(
+    val projectIcon: DrawableResource,
     val desc: String,
     val title: String,
     val links: List<LinkModel>,
@@ -15,71 +17,47 @@ data class ProjectModel(
 data class LinkModel(
     val name: String,
     val link: String,
-    val icon: DrawableResource,
 )
-
-private const val FIRST_INDEX = 0
 
 data class Project(
     val size: Int,
     val projects: List<ProjectModel>,
-    var selectedIndex: MutableState<Int> = mutableStateOf(FIRST_INDEX),
-) {
-    val isFirstItem get() = selectedIndex.value == FIRST_INDEX
-    val isLastItem get() = selectedIndex.value == projects.size - 1
-    fun getSelectedProject() = projects[selectedIndex.value]
-    fun nextProject() {
-        selectedIndex.value++
-    }
-
-    fun previousProject() {
-        selectedIndex.value--
-    }
-}
+)
 
 internal class ProjectHelper {
     private val _projects = listOf(
         ProjectModel(
-            desc = "MoviX is an innovative application designed to enhance your movie browsing experience by providing an intuitive and user-friendly interface. Discover and explore a vast collection of movies effortlessly with MoviX's robust search and detailed information features.",
+            projectIcon = Res.drawable.project_movix,
+            desc = "MoviX makes movie browsing simple and fun with an easy-to-use interface and powerful search—powered by the TMDB API for rich movie details.",
             title = "MoviX",
             links = listOf(
                 LinkModel(
                     name = "Github",
                     link = "https://github.com/Rarj/MoviX",
-                    icon = Res.drawable.ic_github,
                 ), LinkModel(
                     name = "Playstore",
-                    link = "https://play.google.com/store/apps/details?id=com.arj.movix&pli=1",
-                    icon = Res.drawable.ic_github,
+                    link = "https://play.google.com/store/apps/details?id=com.arj.movix",
                 )
             ),
         ), ProjectModel(
-            desc = "CardX, a cutting-edge Kotlin library designed to revolutionize the way you preview Debit Cards within your Android applications. Leveraging the power of Jetpack Compose, CardX offers a seamless integration that enables developers to effortlessly showcase debit card designs with stunning visual appeal. What sets CardX apart is its incorporation of flip animation, adding an engaging and dynamic element to the card preview experience.",
+            projectIcon = Res.drawable.ic_github,
+            desc = "Kotlin library that lets you easily preview debit cards in your Android app using Jetpack Compose. It comes with smooth flip animations to bring your card designs to life and make the user experience more fun and interactive.",
             title = "CardX",
             links = listOf(
                 LinkModel(
-                    name = "Github",
-                    link = "https://github.com/Rarj/MoviX",
-                    icon = Res.drawable.ic_github,
-                ), LinkModel(
-                    name = "Playstore",
-                    link = "https://play.google.com/store/apps/details?id=com.arj.movix&pli=1",
-                    icon = Res.drawable.ic_github,
+                    name = "Sonatype",
+                    link = "https://central.sonatype.com/artifact/com.rioarj.labs/cardx",
                 )
             ),
         ), ProjectModel(
-            desc = "Test 3",
-            title = "Test 3",
+            projectIcon = Res.drawable.ic_link_arrow,
+            desc = "This site is a quick peek into my work experience and a little about who I am. Think of it as my digital handshake—nice to meet you!",
+            title = "PortfoliX",
             links = listOf(
                 LinkModel(
                     name = "Github",
-                    link = "https://github.com/Rarj/MoviX",
-                    icon = Res.drawable.ic_github,
-                ), LinkModel(
-                    name = "Playstore",
-                    link = "https://play.google.com/store/apps/details?id=com.arj.movix&pli=1",
-                    icon = Res.drawable.ic_github,
-                )
+                    link = "https://github.com/Rarj/Portfolix-Compose-Web",
+                ),
             ),
         )
     )
