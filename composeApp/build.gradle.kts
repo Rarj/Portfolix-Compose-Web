@@ -40,6 +40,7 @@ kotlin {
             implementation(libs.material3)
             implementation(compose.components.resources)
             implementation(libs.device.preview)
+            implementation("dev.chrisbanes.material3:material3-window-size-class-multiplatform:0.5.0")
         }
     }
 }
