@@ -28,15 +28,15 @@ internal class ProjectHelper {
     private val _projects = listOf(
         ProjectModel(
             projectIcon = Res.drawable.project_movix,
-            desc = "MoviX makes movie browsing simple and fun with an easy-to-use interface and powerful search—powered by the TMDB API for rich movie details.",
-            title = "MoviX",
+            desc = "Cine Peek makes movie browsing simple and fun with an easy-to-use interface and powerful search—powered by the TMDB API for rich movie details.",
+            title = "Cine Peek",
             links = listOf(
                 LinkModel(
                     name = "Github",
                     link = "https://github.com/Rarj/MoviX",
                 ), LinkModel(
                     name = "Playstore",
-                    link = "https://play.google.com/store/apps/details?id=com.arj.movix",
+                    link = "https://play.google.com/store/apps/details?id=com.arj.cinepeek&hl=id",
                 )
             ),
         ), ProjectModel(
