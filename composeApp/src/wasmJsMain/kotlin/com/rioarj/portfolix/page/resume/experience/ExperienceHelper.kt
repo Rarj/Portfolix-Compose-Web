@@ -5,6 +5,24 @@ import androidx.compose.runtime.mutableStateOf
 internal class ExperienceHelper {
     private val _experiences = listOf(
         ExperienceModel(
+            companyName = "PT Ajaib Teknologi Asia",
+            title = "Sr. Android Engineer",
+            startDate = "Feb 2025",
+            endDate = "Dec 2025",
+            yearsOfExperience = "9mos",
+            descriptions = listOf(
+                "• Led feature development and performance optimization for Team B (Coin) and previously Team A (Investment), including monitoring app health via Firebase Crashlytics and maintaining overall stability",
+                "• Refactored and enhanced legacy codebases by implementing modern architectural patterns, transitioning from MVP to MVVM for improved scalability and maintainability",
+                "• Collaborated closely with cross-functional teams, including Product Managers, Backend Engineers, Frontend Engineers, and QAs",
+                "• Authored technical specification documents for each sprint to ensure clarity and consistency before implementation",
+                "• Conducted code reviews across multiple teams to maintain coding standards, improve quality, and share best practices",
+            ),
+            achievements = emptyList(),
+            appLinks = listOf(
+                "https://play.google.com/store/apps/developer?id=Ajaib+Technologies&hl=id",
+            ),
+        ),
+        ExperienceModel(
             companyName = "PT Prodia Widyahusada Tbk - U by Prodia",
             title = "Sr. Android Engineer",
             startDate = "Oct 2024",
