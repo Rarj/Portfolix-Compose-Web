@@ -3,8 +3,8 @@ package com.rioarj.portfolix.page.project
 import androidx.compose.runtime.mutableStateOf
 import org.jetbrains.compose.resources.DrawableResource
 import portfolix.composeapp.generated.resources.Res
-import portfolix.composeapp.generated.resources.ic_github
-import portfolix.composeapp.generated.resources.ic_link_arrow
+import portfolix.composeapp.generated.resources.ic_brackets
+import portfolix.composeapp.generated.resources.ic_card
 import portfolix.composeapp.generated.resources.project_movix
 
 data class ProjectModel(
@@ -12,6 +12,7 @@ data class ProjectModel(
     val desc: String,
     val title: String,
     val links: List<LinkModel>,
+    val isVectorIcon: Boolean = false,
 )
 
 data class LinkModel(
@@ -40,7 +41,8 @@ internal class ProjectHelper {
                 )
             ),
         ), ProjectModel(
-            projectIcon = Res.drawable.ic_github,
+            projectIcon = Res.drawable.ic_card,
+            isVectorIcon = true,
             desc = "Kotlin library that lets you easily preview debit cards in your Android app using Jetpack Compose. It comes with smooth flip animations to bring your card designs to life and make the user experience more fun and interactive.",
             title = "CardX",
             links = listOf(
@@ -50,7 +52,8 @@ internal class ProjectHelper {
                 )
             ),
         ), ProjectModel(
-            projectIcon = Res.drawable.ic_link_arrow,
+            projectIcon = Res.drawable.ic_brackets,
+            isVectorIcon = true,
             desc = "This site is a quick peek into my work experience and a little about who I am. Think of it as my digital handshake—nice to meet you!",
             title = "PortfoliX",
             links = listOf(
