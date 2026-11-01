@@ -11,7 +11,7 @@ object EducationHelper {
         EducationModel(
             name = "Budi Luhur University",
             degree = "Master of Computer Science",
-            date = "2024–current"
+            date = "2024–2026"
         ),
         EducationModel(
             name = "Syekh Yusuf of Islam University",

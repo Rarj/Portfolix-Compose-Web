@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PortfoliX</title>
+    <meta content="PortfoliX - portfolio of Rio Arjuna, Sr. Android Engineer." name="description">
+    <meta content="#12141F" name="theme-color">
     <link type="text/css" rel="stylesheet" href="styles.css">
     <link href="ic_fav.svg" rel="icon" type="image/svg">
     <script type="application/javascript">
@@ -22,13 +24,29 @@
             if (navigator.brave) supportsWasmGC = false;
             // "?js" forces the JS fallback (useful for testing).
             if (/[?&]js\b/.test(location.search)) supportsWasmGC = false;
+            function fail() {
+                var msg = document.getElementById("loader-msg");
+                if (msg) msg.textContent = "Something went wrong while loading the site. Please refresh the page.";
+            }
             function addScript(src, onload) {
                 var script = document.createElement("script");
                 script.src = src;
+                script.onerror = fail;
                 if (onload) script.onload = onload;
                 document.body.appendChild(script);
             }
             function load() {
+                // Hide the loading screen once Compose has attached its canvas.
+                new MutationObserver(function (_, observer) {
+                    if (!document.querySelector("canvas")) return;
+                    observer.disconnect();
+                    var loader = document.getElementById("loader");
+                    setTimeout(function () {
+                        if (!loader) return;
+                        loader.classList.add("done");
+                        setTimeout(function () { loader.remove(); }, 500);
+                    }, 400);
+                }).observe(document.body, { childList: true, subtree: true });
                 if (supportsWasmGC) addScript("composeApp.js");
                 // The JS build needs Skiko's runtime (skiko.js) loaded first.
                 else addScript("skiko.js", function () { addScript("composeApp-js.js"); });
@@ -40,5 +58,14 @@
     </script>
 </head>
 <body>
+<div id="loader">
+    <div class="mark"><b>[</b>PortfoliX<b>]</b></div>
+    <div class="msg" id="loader-msg"></div>
+</div>
+<noscript>
+    <div style="position:fixed;inset:0;z-index:11;display:flex;align-items:center;justify-content:center;background:#12141F;color:#FFF8DC;font-family:sans-serif">
+        Please enable JavaScript to view this site.
+    </div>
+</noscript>
 </body>
 </html>
