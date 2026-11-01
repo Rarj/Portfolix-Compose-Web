@@ -28,7 +28,27 @@ kotlin {
         binaries.executable()
     }
 
+    // Fallback for browsers without WasmGC (e.g. Safari < 18.2, older mobile browsers)
+    js(IR) {
+        moduleName = "composeApp-js"
+        browser {
+            commonWebpackConfig {
+                outputFileName = "composeApp-js.js"
+            }
+        }
+        binaries.executable()
+    }
+
     sourceSets {
+        val webMain by creating {
+            dependsOn(commonMain.get())
+        }
+        val wasmJsMain by getting {
+            dependsOn(webMain)
+        }
+        val jsMain by getting {
+            dependsOn(webMain)
+        }
         commonMain.dependencies {
             implementation(compose.runtime)
             implementation(compose.foundation)
@@ -39,7 +59,6 @@ kotlin {
             implementation(libs.androidx.lifecycle.runtime.compose)
             implementation(libs.material3)
             implementation(compose.components.resources)
-            implementation(libs.device.preview)
             implementation("dev.chrisbanes.material3:material3-window-size-class-multiplatform:0.5.0")
         }
     }
