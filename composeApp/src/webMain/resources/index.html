@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PortfoliX</title>
+    <link type="text/css" rel="stylesheet" href="styles.css">
+    <link href="ic_fav.svg" rel="icon" type="image/svg">
+    <script type="application/javascript">
+        // Load the Wasm build only if the browser supports WasmGC; otherwise use the JS fallback.
+        (function () {
+            var supportsWasmGC = false;
+            try {
+                supportsWasmGC = typeof WebAssembly === "object" && WebAssembly.validate(
+                    new Uint8Array([0, 97, 115, 109, 1, 0, 0, 0, 1, 5, 1, 95, 1, 120, 0])
+                );
+            } catch (e) {}
+            // Safari/WebKit (incl. iOS browsers) renders a blank page with the Wasm build, use JS there.
+            var ua = navigator.userAgent;
+            if (/AppleWebKit/.test(ua) && !/Chrome\/|Chromium|Edg\/|OPR\/|Android/.test(ua)) supportsWasmGC = false;
+            // Brave renders a blank page with the Wasm build, use JS there.
+            if (navigator.brave) supportsWasmGC = false;
+            // "?js" forces the JS fallback (useful for testing).
+            if (/[?&]js\b/.test(location.search)) supportsWasmGC = false;
+            function addScript(src, onload) {
+                var script = document.createElement("script");
+                script.src = src;
+                if (onload) script.onload = onload;
+                document.body.appendChild(script);
+            }
+            function load() {
+                if (supportsWasmGC) addScript("composeApp.js");
+                // The JS build needs Skiko's runtime (skiko.js) loaded first.
+                else addScript("skiko.js", function () { addScript("composeApp-js.js"); });
+            }
+            // The app mounts on document.body, so wait until it exists.
+            if (document.body) load();
+            else document.addEventListener("DOMContentLoaded", load);
+        })();
+    </script>
+</head>
+<body>
+</body>
+</html>
